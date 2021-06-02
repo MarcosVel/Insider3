@@ -1,13 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { StyleSheet, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
+import Routes from './src/routes';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Text>Insider!</Text>
-    </View>
+    <NavigationContainer>
+      <StatusBar barStyle='dark-content' backgroundColor='transparent' />
+      <Routes />
+    </NavigationContainer>
   );
 }
 
