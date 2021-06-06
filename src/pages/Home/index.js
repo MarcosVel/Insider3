@@ -1,9 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import StatusBarPage from '../../components/StatusBarPage';
 import Menu from '../../components/Menu';
+
+import { ContainerLogo, Logo, ContainerContent, Title, SubTitle } from './styles';
 
 export default function Home() {
   return (
@@ -17,7 +19,15 @@ export default function Home() {
       />
 
       <Menu />
-      <Text>Home</Text>
+
+      <ContainerLogo>
+        <Logo source={ require('../../assets/Logo.png') } resizeMode='contain' />
+      </ContainerLogo>
+
+      <ContainerContent>
+        <Title>EncurtaLink</Title>
+        <SubTitle>Cole seu link para encurtar</SubTitle>
+      </ContainerContent>
     </LinearGradient>
   )
 }

@@ -6,7 +6,7 @@ import StatusBarPage from '../../components/StatusBarPage';
 export default function MyLinks() {
   return (
     <LinearGradient
-      colors={ [ '#908', '#216362' ] }
+      colors={ [ '#132742', '#216362' ] }
       style={ { flex: 1, justifyContent: 'center' } }
     >
       <StatusBarPage
