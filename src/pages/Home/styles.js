@@ -61,3 +61,16 @@ export const Input = styled.TextInput`
   border-bottom-right-radius: 7px;
   font-size: 17px;
 `;
+
+export const ButtonLink = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  background-color: #fff;
+  margin: 0 15px 15px;
+  border-radius: 7px;
+`;
+
+export const ButtonLinkText = styled.Text`
+  font-size: 18px;
+`;

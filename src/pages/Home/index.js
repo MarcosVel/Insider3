@@ -5,7 +5,7 @@ import StatusBarPage from '../../components/StatusBarPage';
 import Menu from '../../components/Menu';
 
 import { Feather } from '@expo/vector-icons';
-import { ContainerLogo, Logo, ContainerContent, Title, SubTitle, ContainerInput, BoxIcon, Input } from './styles';
+import { ContainerLogo, Logo, ContainerContent, Title, SubTitle, ContainerInput, BoxIcon, Input, ButtonLink, ButtonLinkText } from './styles';
 
 export default function Home() {
   return (
@@ -34,10 +34,14 @@ export default function Home() {
           </BoxIcon>
           <Input
             placeholder='Cole seu link aqui...'
+            placeholderTextColor='#b9b9b9'
+            color='white'
           />
         </ContainerInput>
 
-        
+        <ButtonLink>
+          <ButtonLinkText>Gerar Link</ButtonLinkText>
+        </ButtonLink>
       </ContainerContent>
     </LinearGradient>
   )
