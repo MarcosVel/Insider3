@@ -36,7 +36,7 @@ export const ContainerInput = styled.View`
   width: 100%;
   border-radius: 7px;
   margin: 15px 0;
-  padding: 0 15px;
+  padding: 0 25px;
 `;
 
 export const BoxIcon = styled.View`
@@ -68,7 +68,7 @@ export const ButtonLink = styled.TouchableOpacity`
   justify-content: center;
   height: 45px;
   background-color: #fff;
-  margin: 0 15px 15px;
+  margin: 0 25px;
   border-radius: 7px;
 `;
 

@@ -6,7 +6,7 @@ import Menu from '../../components/Menu';
 
 import { Feather } from '@expo/vector-icons';
 import { ContainerLogo, Logo, ContainerContent, Title, SubTitle, ContainerInput, BoxIcon, Input, ButtonLink, ButtonLinkText } from './styles';
-import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, TouchableWithoutFeedback } from 'react-native';
 
 export default function Home() {
   return (
@@ -22,28 +22,34 @@ export default function Home() {
 
         <Menu />
 
-        <ContainerLogo>
-          <Logo source={ require('../../assets/Logo.png') } resizeMode='contain' />
-        </ContainerLogo>
+        <KeyboardAvoidingView
+          behavior={ Platform.OS === 'android' ? 'padding' : 'position' }
+          enabled
+        >
+          <ContainerLogo>
+            <Logo source={ require('../../assets/Logo.png') } resizeMode='contain' />
+          </ContainerLogo>
 
-        <ContainerContent>
-          <Title>EncurtaLink</Title>
-          <SubTitle>Cole seu link para encurtar</SubTitle>
+          <ContainerContent>
+            <Title>EncurtaLink</Title>
+            <SubTitle>Cole seu link para encurtar</SubTitle>
 
-          <ContainerInput>
-            <BoxIcon>
-              <Feather name='link' size={ 22 } color='#fff' />
-            </BoxIcon>
-            <Input
-              placeholder='Cole seu link aqui...'
-              placeholderTextColor='#b9b9b9'
-            />
-          </ContainerInput>
+            <ContainerInput>
+              <BoxIcon>
+                <Feather name='link' size={ 22 } color='#fff' />
+              </BoxIcon>
+              <Input
+                placeholder='Cole seu link aqui...'
+                placeholderTextColor='#b9b9b9'
+              />
+            </ContainerInput>
 
-          <ButtonLink>
-            <ButtonLinkText>Gerar Link</ButtonLinkText>
-          </ButtonLink>
-        </ContainerContent>
+            <ButtonLink>
+              <ButtonLinkText>Gerar Link</ButtonLinkText>
+            </ButtonLink>
+          </ContainerContent>
+        </KeyboardAvoidingView>
+
       </LinearGradient>
     </TouchableWithoutFeedback>
   )
