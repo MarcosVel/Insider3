@@ -41,6 +41,9 @@ export default function Home() {
               <Input
                 placeholder='Cole seu link aqui...'
                 placeholderTextColor='#b9b9b9'
+                autoCapitalize='none'
+                autoCorrect={ false }
+                keyboardType='url'
               />
             </ContainerInput>
 
