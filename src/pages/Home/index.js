@@ -6,43 +6,45 @@ import Menu from '../../components/Menu';
 
 import { Feather } from '@expo/vector-icons';
 import { ContainerLogo, Logo, ContainerContent, Title, SubTitle, ContainerInput, BoxIcon, Input, ButtonLink, ButtonLinkText } from './styles';
+import { Keyboard, TouchableWithoutFeedback } from 'react-native';
 
 export default function Home() {
   return (
-    <LinearGradient
-      colors={ [ '#1ddbb9', '#132742' ] }
-      style={ { flex: 1, justifyContent: 'center' } }
-    >
-      <StatusBarPage
-        barStyle='light-content'
-        backgroundColor='#1ddbb9'
-      />
+    <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss() }>
+      <LinearGradient
+        colors={ [ '#1ddbb9', '#132742' ] }
+        style={ { flex: 1, justifyContent: 'center' } }
+      >
+        <StatusBarPage
+          barStyle='light-content'
+          backgroundColor='#1ddbb9'
+        />
 
-      <Menu />
+        <Menu />
 
-      <ContainerLogo>
-        <Logo source={ require('../../assets/Logo.png') } resizeMode='contain' />
-      </ContainerLogo>
+        <ContainerLogo>
+          <Logo source={ require('../../assets/Logo.png') } resizeMode='contain' />
+        </ContainerLogo>
 
-      <ContainerContent>
-        <Title>EncurtaLink</Title>
-        <SubTitle>Cole seu link para encurtar</SubTitle>
+        <ContainerContent>
+          <Title>EncurtaLink</Title>
+          <SubTitle>Cole seu link para encurtar</SubTitle>
 
-        <ContainerInput>
-          <BoxIcon>
-            <Feather name='link' size={ 22 } color='#fff' />
-          </BoxIcon>
-          <Input
-            placeholder='Cole seu link aqui...'
-            placeholderTextColor='#b9b9b9'
-            color='white'
-          />
-        </ContainerInput>
+          <ContainerInput>
+            <BoxIcon>
+              <Feather name='link' size={ 22 } color='#fff' />
+            </BoxIcon>
+            <Input
+              placeholder='Cole seu link aqui...'
+              placeholderTextColor='#b9b9b9'
+            />
+          </ContainerInput>
 
-        <ButtonLink>
-          <ButtonLinkText>Gerar Link</ButtonLinkText>
-        </ButtonLink>
-      </ContainerContent>
-    </LinearGradient>
+          <ButtonLink>
+            <ButtonLinkText>Gerar Link</ButtonLinkText>
+          </ButtonLink>
+        </ContainerContent>
+      </LinearGradient>
+    </TouchableWithoutFeedback>
   )
 }
