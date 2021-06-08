@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import StatusBarPage from '../../components/StatusBarPage';
@@ -6,9 +6,19 @@ import Menu from '../../components/Menu';
 
 import { Feather } from '@expo/vector-icons';
 import { ContainerLogo, Logo, ContainerContent, Title, SubTitle, ContainerInput, BoxIcon, Input, ButtonLink, ButtonLinkText } from './styles';
-import { Keyboard, KeyboardAvoidingView, Platform, TouchableWithoutFeedback } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Modal, Platform, TouchableWithoutFeedback } from 'react-native';
+import ModalLink from '../../components/ModalLink';
 
 export default function Home() {
+
+  const [ input, setInput ] = useState('');
+  const [ modalVisible, setModalVisible ] = useState(false);
+
+  function handleShortLink() {
+    // alert(`URL encurtada: ${input}`);
+    setModalVisible(true);
+  }
+
   return (
     <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss() }>
       <LinearGradient
@@ -44,14 +54,25 @@ export default function Home() {
                 autoCapitalize='none'
                 autoCorrect={ false }
                 keyboardType='url'
+                value={ input }
+                onChangeText={ (text) => setInput(text) }
               />
             </ContainerInput>
 
-            <ButtonLink>
+            <ButtonLink onPress={ handleShortLink }>
               <ButtonLinkText>Gerar Link</ButtonLinkText>
             </ButtonLink>
           </ContainerContent>
         </KeyboardAvoidingView>
+
+        <Modal
+          visible={ modalVisible }
+          transparent
+          animationType='slide'
+        >
+          <ModalLink />
+        </Modal>
+
 
       </LinearGradient>
     </TouchableWithoutFeedback>
