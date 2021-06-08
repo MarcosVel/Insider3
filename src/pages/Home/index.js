@@ -73,7 +73,6 @@ export default function Home() {
           <ModalLink />
         </Modal>
 
-
       </LinearGradient>
     </TouchableWithoutFeedback>
   )
