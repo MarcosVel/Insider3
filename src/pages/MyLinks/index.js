@@ -1,19 +1,27 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import Menu from '../../components/Menu';
 import StatusBarPage from '../../components/StatusBarPage';
+import { Container, Title, ListLinks } from './styles';
 
 export default function MyLinks() {
   return (
-    <LinearGradient
-      colors={ [ '#132742', '#216362' ] }
-      style={ { flex: 1, justifyContent: 'center' } }
-    >
+    <Container>
       <StatusBarPage
         barStyle='light-content'
         backgroundColor='#132742'
       />
-      <Text>MyLinks</Text>
-    </LinearGradient>
+
+      <Menu />
+
+      <Title>Meus Links</Title>
+
+      <ListLinks
+        data={ [ { id: 1, link: 'test.com' } ] }
+        keyExtractor={ (item) => String(item.id) }
+        renderItem={ ({ item }) => <ListItem /> }
+      />
+
+    </Container>
   )
 }
