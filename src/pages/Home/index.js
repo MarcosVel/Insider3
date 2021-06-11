@@ -9,14 +9,25 @@ import { ContainerLogo, Logo, ContainerContent, Title, SubTitle, ContainerInput,
 import { Keyboard, KeyboardAvoidingView, Modal, Platform, TouchableWithoutFeedback } from 'react-native';
 import ModalLink from '../../components/ModalLink';
 
+import api from '../../services/api';
+
 export default function Home() {
 
   const [ input, setInput ] = useState('');
   const [ modalVisible, setModalVisible ] = useState(false);
 
-  function handleShortLink() {
-    // alert(`URL encurtada: ${input}`);
-    setModalVisible(true);
+  async function handleShortLink() {
+    try {
+      const response = await api.post('/shorten',
+        {
+          long_url: input
+        })
+      console.log(response.data);
+    } catch {
+      alert('Ops, parece que algo deu errado!');
+      Keyboard.dismiss();
+      setInput('');
+    }
   }
 
   return (
