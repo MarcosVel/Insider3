@@ -6,27 +6,35 @@ import Menu from '../../components/Menu';
 
 import { Feather } from '@expo/vector-icons';
 import { ContainerLogo, Logo, ContainerContent, Title, SubTitle, ContainerInput, BoxIcon, Input, ButtonLink, ButtonLinkText } from './styles';
-import { Keyboard, KeyboardAvoidingView, Modal, Platform, TouchableWithoutFeedback } from 'react-native';
+import { ActivityIndicator, Keyboard, KeyboardAvoidingView, Modal, Platform, TouchableWithoutFeedback } from 'react-native';
 import ModalLink from '../../components/ModalLink';
 
 import api from '../../services/api';
 
 export default function Home() {
 
+  const [ loading, setLoading ] = useState(false);
   const [ input, setInput ] = useState('');
   const [ modalVisible, setModalVisible ] = useState(false);
 
   async function handleShortLink() {
+    setLoading(true);
+
     try {
       const response = await api.post('/shorten',
         {
           long_url: input
-        })
+        }
+      )
+
       console.log(response.data);
+      setLoading(false);
+
     } catch {
       alert('Ops, parece que algo deu errado!');
       Keyboard.dismiss();
       setInput('');
+      setLoading(false);
     }
   }
 
@@ -71,7 +79,13 @@ export default function Home() {
             </ContainerInput>
 
             <ButtonLink onPress={ handleShortLink }>
-              <ButtonLinkText>Gerar Link</ButtonLinkText>
+              {
+                loading ? (
+                  <ActivityIndicator color='#121212' size={ 24 } />
+                ) : (
+                  <ButtonLinkText>Gerar Link</ButtonLinkText>
+                )
+              }
             </ButtonLink>
           </ContainerContent>
         </KeyboardAvoidingView>
