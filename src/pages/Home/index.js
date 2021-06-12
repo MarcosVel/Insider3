@@ -100,7 +100,7 @@ export default function Home() {
           transparent
           animationType='slide'
         >
-          <ModalLink onClose={ () => setModalVisible(false) } />
+          <ModalLink onClose={ () => setModalVisible(false) } data={ data } />
         </Modal>
 
       </LinearGradient>

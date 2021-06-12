@@ -1,21 +1,21 @@
 import React from 'react';
-import { Share, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
+import { Share, ToastAndroid, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { ModalContainer, Container, Header, LinkArea, Title, LongUrl, ShortLinkArea, ShortLinkUrl } from './styles';
 
 import { Feather } from '@expo/vector-icons';
 import Clipboard from 'expo-clipboard';
 
-export default function ModalLink({ onClose }) {
+export default function ModalLink({ onClose, data }) {
 
   function copyLink() {
-    Clipboard.setString('https://google.com');
-    alert('Link copiado com sucesso!');
+    Clipboard.setString(data.link);
+    ToastAndroid.showWithGravityAndOffset('Link copiado com sucesso!', ToastAndroid.SHORT, ToastAndroid.BOTTOM, 0, 30);
   }
-  
+
   async function handleShare() {
     try {
       const result = await Share.share({
-        message: `Link: https://google.com`
+        message: `Link: ${ data.link }`
       });
 
       if (result.action === Share.sharedAction) {
@@ -59,13 +59,13 @@ export default function ModalLink({ onClose }) {
 
         <LinkArea>
           <Title>Link encurtado</Title>
-          <LongUrl numberOfLines={ 1 }>https://sujeitoprogramador.com.br</LongUrl>
+          <LongUrl numberOfLines={ 1 }>{ data.long_url }</LongUrl>
 
           <ShortLinkArea
             activeOpacity={ 0.8 }
             onPress={ copyLink }
           >
-            <ShortLinkUrl numberOfLines={ 1 }>https://sujprog.com</ShortLinkUrl>
+            <ShortLinkUrl numberOfLines={ 1 }>{ data.link }</ShortLinkUrl>
             <TouchableOpacity onPress={ copyLink }>
               <Feather
                 name='copy'
