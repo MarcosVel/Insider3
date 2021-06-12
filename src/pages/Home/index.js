@@ -16,6 +16,7 @@ export default function Home() {
   const [ loading, setLoading ] = useState(false);
   const [ input, setInput ] = useState('');
   const [ modalVisible, setModalVisible ] = useState(false);
+  const [ data, setData ] = useState({});
 
   async function handleShortLink() {
     setLoading(true);
@@ -27,8 +28,12 @@ export default function Home() {
         }
       )
 
-      console.log(response.data);
+      setData(response.data);
+      setModalVisible(true);
+
+      Keyboard.dismiss();
       setLoading(false);
+      setInput('');
 
     } catch {
       alert('Ops, parece que algo deu errado!');
