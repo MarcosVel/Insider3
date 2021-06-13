@@ -22,7 +22,7 @@ export default function MyLinks() {
         renderItem={ ({ item }) =>
           <ListItem data={ item } />
         }
-        contentContainerStyle={ { paddingBottom: 20 } }
+        contentContainerStyle={ { paddingBottom: 30 } }
         showsVerticalScrollIndicator={ false }
       />
 
