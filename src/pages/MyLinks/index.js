@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Menu from '../../components/Menu';
 import ListItem from '../../components/ListItem';
 import StatusBarPage from '../../components/StatusBarPage';
 import { Container, ListLinks, Title } from './styles';
+import { useIsFocused } from '@react-navigation/native';
+import { getLinksSave } from '../../utils/storeLinks';
 
 export default function MyLinks() {
+  const isFocused = useIsFocused();
+
+  const [ links, setLinks ] = useState([]);
+  const [ data, setData ] = useState({});
+  const [ modalVisible, setModalVisible ] = useState(false);
+
+  useEffect(() => {
+    async function getLinks() {
+      const result = await getLinksSave('sujeitolinks');
+      setLinks(result);
+    }
+
+    getLinks();
+
+  }, [ isFocused ]);
+
   return (
     <Container>
       <StatusBarPage
@@ -17,7 +35,7 @@ export default function MyLinks() {
       <Title>Meus Links</Title>
 
       <ListLinks
-        data={ [ { id: 1, link: 'test.com' } ] }
+        data={ links }
         keyExtractor={ (item) => String(item.id) }
         renderItem={ ({ item }) =>
           <ListItem data={ item } />
