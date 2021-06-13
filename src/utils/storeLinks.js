@@ -23,7 +23,8 @@ export async function saveLink(key, newLink) {
   }
 
   linksStored.push(newLink);
-  await AsyncStorage.setItem(key, JSON.stringify(linksStored))
+  await AsyncStorage.setItem(key, JSON.stringify(linksStored));
+  console.log('link salvo com sucesso')
 
 }
 
