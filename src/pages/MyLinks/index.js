@@ -26,7 +26,8 @@ export default function MyLinks() {
   }, [ isFocused ]);
 
   function handleItem(item) {
-    console.log(item);
+    setData(item);
+    setModalVisible(true);
   }
 
   return (
