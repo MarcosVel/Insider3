@@ -5,6 +5,8 @@ import StatusBarPage from '../../components/StatusBarPage';
 import { Container, ListLinks, Title } from './styles';
 import { useIsFocused } from '@react-navigation/native';
 import { getLinksSave } from '../../utils/storeLinks';
+import ModalLink from '../../components/ModalLink';
+import { Modal } from 'react-native';
 
 export default function MyLinks() {
   const isFocused = useIsFocused();
@@ -23,6 +25,10 @@ export default function MyLinks() {
 
   }, [ isFocused ]);
 
+  function handleItem(item) {
+    console.log(item);
+  }
+
   return (
     <Container>
       <StatusBarPage
@@ -38,11 +44,19 @@ export default function MyLinks() {
         data={ links }
         keyExtractor={ (item) => String(item.id) }
         renderItem={ ({ item }) =>
-          <ListItem data={ item } />
+          <ListItem data={ item } selectedItem={ handleItem } />
         }
         contentContainerStyle={ { paddingBottom: 30 } }
         showsVerticalScrollIndicator={ false }
       />
+
+      <Modal
+        visible={ modalVisible }
+        transparent
+        animationType='slide'
+      >
+        <ModalLink onClose={ () => setModalVisible(false) } data={ data } />
+      </Modal>
 
     </Container>
   )
