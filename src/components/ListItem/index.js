@@ -4,11 +4,11 @@ import { ContainerButton, Item, ActionContainer } from './styles';
 import { Feather } from '@expo/vector-icons';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
-export default function ListItem({ data, selectedItem }) {
+export default function ListItem({ data, selectedItem, deleteItem }) {
 
   function RightActions() {
     return (
-      <ActionContainer>
+      <ActionContainer onPress={ () => deleteItem(data.id) }>
         <Feather
           name="trash"
           color="#fff"

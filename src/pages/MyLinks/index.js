@@ -30,6 +30,10 @@ export default function MyLinks() {
     setModalVisible(true);
   }
 
+  function handleDelete(id) {
+    console.log('Item deletado! ' + id);
+  }
+
   return (
     <Container>
       <StatusBarPage
@@ -45,7 +49,7 @@ export default function MyLinks() {
         data={ links }
         keyExtractor={ (item) => String(item.id) }
         renderItem={ ({ item }) =>
-          <ListItem data={ item } selectedItem={ handleItem } />
+          <ListItem data={ item } selectedItem={ handleItem } deleteItem={ handleDelete } />
         }
         contentContainerStyle={ { paddingBottom: 30 } }
         showsVerticalScrollIndicator={ false }
