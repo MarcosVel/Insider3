@@ -4,7 +4,7 @@ import ListItem from '../../components/ListItem';
 import StatusBarPage from '../../components/StatusBarPage';
 import { Container, ListLinks, Title } from './styles';
 import { useIsFocused } from '@react-navigation/native';
-import { getLinksSave } from '../../utils/storeLinks';
+import { getLinksSave, deleteLink } from '../../utils/storeLinks';
 import ModalLink from '../../components/ModalLink';
 import { Modal } from 'react-native';
 
@@ -30,8 +30,9 @@ export default function MyLinks() {
     setModalVisible(true);
   }
 
-  function handleDelete(id) {
-    console.log('Item deletado! ' + id);
+  async function handleDelete(id) {
+    const result = await deleteLink(links, id);
+    setLinks(result);
   }
 
   return (

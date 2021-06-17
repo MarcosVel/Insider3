@@ -14,7 +14,7 @@ export async function saveLink(key, newLink) {
   let linksStored = await getLinksSave(key);
 
   // Se tiver algum link salvo com esse mesmo id ou duplicado, preciso ignorar. ex.: ter dois links do google.com.
-  const hasLink = linksStored.some(link => link.id === newLink.id); // some == verifica se algum id é igual ao novo link
+  const hasLink = linksStored.some(link => link.id === newLink.id); // some == verifica se algum id é igual ao novo link.
 
   if (hasLink) {
     console.log('esse link ja existe na lista');
@@ -30,5 +30,13 @@ export async function saveLink(key, newLink) {
 
 // Deletar algum link específico.
 export async function deleteLink(links, id) {
+
+  let myLinks = links.filter( (item) => {
+    return (item.id !== id); // retorna os links que não tem o id igual, pois será removido.
+  })
+  await AsyncStorage.setItem('sujeitolinks', JSON.stringify(myLinks));
+
+  console.log('Link deletado do storage');
+  return myLinks;
 
 }
