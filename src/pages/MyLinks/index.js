@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Menu from '../../components/Menu';
 import ListItem from '../../components/ListItem';
 import StatusBarPage from '../../components/StatusBarPage';
-import { Container, ListLinks, Title } from './styles';
+import { Container, ListLinks, Title, ContainerEmpty, WarningText } from './styles';
 import { useIsFocused } from '@react-navigation/native';
 import { getLinksSave, deleteLink } from '../../utils/storeLinks';
 import ModalLink from '../../components/ModalLink';
@@ -45,6 +45,14 @@ export default function MyLinks() {
       <Menu />
 
       <Title>Meus Links</Title>
+
+      {
+        links.length === 0 && (
+          <ContainerEmpty>
+            <WarningText>Você ainda não possui nenhum link 😢</WarningText>
+          </ContainerEmpty>
+        )
+      }
 
       <ListLinks
         data={ links }
