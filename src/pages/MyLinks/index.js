@@ -6,7 +6,7 @@ import { Container, ListLinks, Title, ContainerEmpty, WarningText } from './styl
 import { useIsFocused } from '@react-navigation/native';
 import { getLinksSave, deleteLink } from '../../utils/storeLinks';
 import ModalLink from '../../components/ModalLink';
-import { Modal } from 'react-native';
+import { ActivityIndicator, Modal } from 'react-native';
 
 export default function MyLinks() {
   const isFocused = useIsFocused();
@@ -14,11 +14,13 @@ export default function MyLinks() {
   const [ links, setLinks ] = useState([]);
   const [ data, setData ] = useState({});
   const [ modalVisible, setModalVisible ] = useState(false);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
     async function getLinks() {
       const result = await getLinksSave('sujeitolinks');
       setLinks(result);
+      setLoading(false);
     }
 
     getLinks();
@@ -47,9 +49,17 @@ export default function MyLinks() {
       <Title>Meus Links</Title>
 
       {
-        links.length === 0 && (
+        loading && (
           <ContainerEmpty>
-            <WarningText>Você ainda não possui nenhum link 😢</WarningText>
+            <ActivityIndicator color='#fff' size={ 30 } />
+          </ContainerEmpty>
+        )
+      }
+
+      {
+        !loading && links.length === 0 && (
+          <ContainerEmpty>
+            <WarningText>Você ainda não salvou nenhum link 😢</WarningText>
           </ContainerEmpty>
         )
       }
